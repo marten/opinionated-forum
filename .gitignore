@@ -1,0 +1,6 @@
+.DS_Store
+*.log
+db/photos/*
+db/import/*
+db/*.sqlite3
+config/initializers/site_keys.rb

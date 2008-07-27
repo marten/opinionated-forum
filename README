@@ -1,0 +1,13 @@
+Opinionated Rails Forum
+=======================
+
+This is a rails-based forum engine with some strong opinions:
+
+  - Authentication is OpenID
+  - There are no forums/subforums
+  - Topics are tagged, and some tags are protected (can only be set by administrators)
+  - Tags are lowercase. By definition
+  - Everyone can edit tags for a topic
+  - A user is either normal or admin, no moderators
+  - Admins can split posts into a new topic
+  - Avatars are gravatars
