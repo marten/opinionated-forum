@@ -1,0 +1,16 @@
+<h1>Editing topic</h1>
+
+<% form_for(@topic) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @topic %> |
+<%= link_to 'Back', topics_path %>

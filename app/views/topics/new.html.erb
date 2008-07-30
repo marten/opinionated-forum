@@ -1,0 +1,21 @@
+<h1>New topic</h1>
+
+<% form_for(@topic) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  
+  <p>
+    <%= label @post, :body %><br />
+    <%= text_area @post, :body %>
+  </p>
+
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', topics_path %>

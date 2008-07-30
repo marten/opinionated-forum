@@ -3,7 +3,7 @@ Opinionated Rails Forum
 
 This is a rails-based forum engine with some strong opinions:
 
-  - Authentication is OpenID
+  - Authentication is OpenID, makes new profile if not exists
   - There are no forums/subforums
   - Topics are tagged, and some tags are protected (can only be set by administrators)
   - Tags are lowercase. By definition

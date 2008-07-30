@@ -1,4 +1,5 @@
 .DS_Store
+db/cstore
 *.log
 db/photos/*
 db/import/*

@@ -1,0 +1,26 @@
+!!! XML
+!!!
+%html{ :xmlns=>"http://www.w3.org/1999/xhtml", 'xml:lang'=>"en", :lang=>"en" }
+  %head
+    %title Forum
+    %meta{ 'http-equiv'=>"content-type", :content=>"text/html;charset=UTF-8" }
+    = stylesheet_link_tag 'screen'
+  %body
+    #masthead
+      %ul
+        %li= link_to "Topics", topics_path
+        %li= link_to 'New topic', new_topic_path
+        - if @current_user
+          %li= link_to "Profile", @current_user
+        %li= link_to "Search", "#notimplemented"
+        %li{ :style=>"float: right" }
+          - if @current_user
+            = link_to "Log Out", logout_path
+          - else
+            = link_to "Log In", login_path
+
+    #content
+      %p{ :style=>"color: green" }= flash[:notice]
+    
+      %div{ :id => controller.controller_name }
+        = yield

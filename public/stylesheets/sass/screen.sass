@@ -1,0 +1,99 @@
+@import reset.css
+
+body
+  :font-family 'Lucida Grande', Verdana, Helvetica, Arial, sans-serif
+  :line-height 1.6em
+  :background #e5e5e5
+  :margin 3.2em 1.6em
+  
+#masthead
+  :position fixed
+  :z-index 995
+  :top 0
+  :left 0
+  :width 100%
+  :background #003366
+  :margin-bottom 12px
+  
+  h1
+    :padding 10px 30px
+    :color #ffcc00
+
+  ul
+    :display block
+    
+    li
+      :float left
+
+      a
+        :float left
+        :padding 0 10px
+        :margin 0
+        :line-height 2em
+        :color #fff
+        :text-decoration none
+        :border-left 1px solid #ccc
+
+      &:first-child a
+        :border-left 0
+
+#content
+  :padding 12px 20px
+  :background #ffffff
+  :border-right  4px solid #bbbbbb
+  :border-bottom 4px solid #bbbbbb
+
+#topics 
+  table
+    :width 100%
+
+    tr
+      :display inline-block
+      :width 100%
+      :border-bottom 1px solid #efefef
+    
+      &.unread
+        :font-weight bold
+        :background #ffff99
+
+      td
+        :position relative
+        :display block
+        :float left
+
+        a:hover, a:active
+          :background #003366
+          :color #ffffff
+      
+        a strong
+          :font-weight bold
+          :font-size 1.2em
+
+        &.topic
+          :width 56%
+          :overflow hidden
+        
+          a
+            :padding 0 3px
+            :margin-right 3px
+            :display block
+            :text-decoration none
+
+        &.tags
+          :width 19%
+      
+        &.time
+          :width 25%
+          :overflow hidden
+        
+          a
+            :text-decoration none
+        
+  #markread
+    :font-size 2em
+    :text-align center
+    :margin-bottom 0.5em
+    
+    a:hover
+      :background #003366
+      :color #ffffff

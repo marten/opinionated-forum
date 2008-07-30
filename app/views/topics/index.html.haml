@@ -1,0 +1,10 @@
+%table
+  - @topics.each do |topic|
+    %tr
+      %td.topic= link_to topic.title, topic
+      - if not topic.tag_list.empty?
+        %td.tags=  topic.tag_list
+      - else
+        %td.tags No tags assigned
+
+
