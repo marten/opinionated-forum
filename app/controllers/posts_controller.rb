@@ -1,51 +1,20 @@
 class PostsController < ApplicationController
-  # GET /posts
-  # GET /posts.xml
-  def index
-    @posts = Post.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @posts }
-    end
-  end
-
-  # GET /posts/1
-  # GET /posts/1.xml
-  def show
-    @post = Post.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @post }
-    end
-  end
-
-  # GET /posts/new
-  # GET /posts/new.xml
-  def new
-    @post = Post.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @post }
-    end
-  end
-
-  # GET /posts/1/edit
+  # GET /topics/1/posts/1/edit
   def edit
     @post = Post.find(params[:id])
   end
 
-  # POST /posts
-  # POST /posts.xml
+  # POST /topics/1/posts
+  # POST /topics/1/posts.xml
   def create
     @post = Post.new(params[:post])
+    @post.topic_id = params[:topic_id]
+    @post.user_id = @current_user.id
 
     respond_to do |format|
       if @post.save
         flash[:notice] = 'Post was successfully created.'
-        format.html { redirect_to(@post) }
+        format.html { redirect_to(topic_path(@post.topic)) }
         format.xml  { render :xml => @post, :status => :created, :location => @post }
       else
         format.html { render :action => "new" }
@@ -54,8 +23,8 @@ class PostsController < ApplicationController
     end
   end
 
-  # PUT /posts/1
-  # PUT /posts/1.xml
+  # PUT /topics/1/posts/1
+  # PUT /topics/1/posts/1.xml
   def update
     @post = Post.find(params[:id])
 
@@ -71,8 +40,8 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1
-  # DELETE /posts/1.xml
+  # DELETE /topics/1/posts/1
+  # DELETE /topics/1/posts/1.xml
   def destroy
     @post = Post.find(params[:id])
     @post.destroy

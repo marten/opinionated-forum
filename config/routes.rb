@@ -1,11 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :posts
 
-  map.resources :topics
+  map.resources :topics, :member => { :tag => :post, :untag => :post } do |topic|
+    topic.resources :posts
+  end
 
   map.resource  :session,  :member => { :create_finalize => :get }
-  map.login     '/login',  :controller => 'session', :action => 'new'
-  map.logout    '/logout', :controller => 'session', :action => 'destroy'
+  map.login     '/login',  :controller => 'sessions', :action => 'new'
+  map.logout    '/logout', :controller => 'sessions', :action => 'destroy'
   map.resources :users
   map.root      :controller => 'topics'
 

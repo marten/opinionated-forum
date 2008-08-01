@@ -90,4 +90,40 @@ class TopicsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def tag
+    @topic = Topic.find(params[:id])
+    @topic.tag_list.add(params[:tag][:name].split(" "))
+    
+    respond_to do |wants|
+      if @topic.save
+        flash[:notice] = "Tagged topic with #{params[:tag][:name]}."
+        wants.html { redirect_to(@topic) }
+        wants.xml  { head :ok }
+      else
+        flash[:error] = "Could not add tag #{params[:tag][:name]}."
+        wants.html { redirect_to(@topic) }
+        wants.xml  { render :xml => @topic.errors, :status => :unprocessable_entity}
+      end
+    end
+  end
+  
+  def untag
+    @topic = Topic.find(params[:id])
+    @topic.tag_list.remove(params[:tag])
+    respond_to do |wants|
+      if @topic.save
+        wants.html { flash[:notice] = "Tag #{params[:tag]} removed."
+                     redirect_to(@topic) }
+        wants.xml  { head :ok }
+        wants.js   { }
+      else
+        wants.html { flash[:error] = "Could not remove tag #{params[:tag]}."
+                     redirect_to @topic }
+        wants.xml  { render :xml => @topic.errors, :status => :unprocessable_entity }
+        wants.js   { render :update do |page| page.alert("Failed") end }
+      end
+    end
+  end
+
 end

@@ -1,9 +1,10 @@
 @import url(reset.css);
 body {
   font-family: 'Lucida Grande', Verdana, Helvetica, Arial, sans-serif;
+  font-size: 0.8em;
   line-height: 1.6em;
   background: #e5e5e5;
-  margin: 3.2em 1.6em; }
+  margin: 35px 20px; }
 
 #masthead {
   position: fixed;
@@ -11,70 +12,99 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  background: #003366;
-  margin-bottom: 12px; }
-  #masthead h1 {
-    padding: 10px 30px;
-    color: #ffcc00; }
+  height: 35px;
+  background: black; }
   #masthead ul {
-    display: block; }
+    padding: 10px 20px 0 20px;
+    display: block;
+    font-size: 0.8em; }
     #masthead ul li {
       float: left; }
       #masthead ul li a {
+        background: #333;
         float: left;
-        padding: 0 10px;
-        margin: 0;
-        line-height: 2em;
+        padding: 0 20px;
+        margin: 0 10px 0 0;
+        line-height: 25px;
         color: #fff;
-        text-decoration: none;
-        border-left: 1px solid #ccc; }
+        text-decoration: none; }
+        #masthead ul li a:hover, #masthead ul li a:active {
+          background: #444; }
+      #masthead ul li.right {
+        float: right; }
+        #masthead ul li.right a {
+          margin: 0 0 0 10px; }
+      #masthead ul li.logout a {
+        background: none;
+        padding: 0;
+        color: #aaa; }
+      #masthead ul li.current a {
+        background: white;
+        color: black; }
       #masthead ul li:first-child a {
         border-left: 0; }
 
-#content {
-  padding: 12px 20px;
+#topics {
+  float: left;
+  width: 70%;
+  padding: 20px;
   background: #ffffff;
   border-right: 4px solid #bbbbbb;
   border-bottom: 4px solid #bbbbbb; }
-
-#topics table {
-  width: 100%; }
-  #topics table tr {
-    display: inline-block;
+  #topics .topic {
+    overflow: auto;
     width: 100%;
-    border-bottom: 1px solid #efefef; }
-    #topics table tr.unread {
-      font-weight: bold;
-      background: #ffff99; }
-    #topics table tr td {
-      position: relative;
-      display: block;
-      float: left; }
-      #topics table tr td a:hover, #topics table tr td a:active {
-        background: #003366;
-        color: #ffffff; }
-      #topics table tr td a strong {
+    margin-bottom: 10px; }
+    #topics .topic ul {
+      font-size: 0.8em; }
+      #topics .topic ul.unread {
         font-weight: bold;
-        font-size: 1.2em; }
-      #topics table tr td.topic {
-        width: 56%;
-        overflow: hidden; }
-        #topics table tr td.topic a {
-          padding: 0 3px;
-          margin-right: 3px;
-          display: block;
+        background: #ffff99; }
+      #topics .topic ul li {
+        float: left;
+        margin-right: 10px; }
+        #topics .topic ul li a {
           text-decoration: none; }
-      #topics table tr td.tags {
-        width: 19%; }
-      #topics table tr td.time {
-        width: 25%;
-        overflow: hidden; }
-        #topics table tr td.time a {
-          text-decoration: none; }
-#topics #markread {
-  font-size: 2em;
-  text-align: center;
-  margin-bottom: 0.5em; }
-  #topics #markread a:hover {
-    background: #003366;
-    color: #ffffff; }
+  #topics #markread {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 0.5em; }
+    #topics #markread a:hover {
+      background: #003366;
+      color: #ffffff; }
+
+#posts {
+  float: left;
+  width: 70%;
+  padding: 20px;
+  background: #ffffff;
+  border-right: 4px solid #bbbbbb;
+  border-bottom: 4px solid #bbbbbb; }
+  #posts #quickreply {
+    position: fixed;
+    z-index: 990;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 8em;
+    padding: 12px 30px;
+    background: #e5e5e5; }
+    #posts #quickreply textarea {
+      width: 70%;
+      float: left;
+      margin-right: 12px;
+      height: 6em; }
+    #posts #quickreply input {
+      margin-right: 6px; }
+
+#meta {
+  float: left;
+  width: 20%;
+  margin: 20px; }
+  #meta h1 {
+    font-size: 1.8em;
+    margin-bottom: 20px; }
+  #meta h2 {
+    background: #f3f3f3;
+    padding: 2px 5px;
+    font-size: 0.8em; }

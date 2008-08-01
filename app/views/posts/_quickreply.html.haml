@@ -1,0 +1,4 @@
+#quickreply
+  - form_for(:post, :url => topic_posts_path(@topic)) do |f| 
+    = f.text_area :body
+    = f.submit

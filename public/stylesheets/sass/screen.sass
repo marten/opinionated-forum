@@ -2,9 +2,10 @@
 
 body
   :font-family 'Lucida Grande', Verdana, Helvetica, Arial, sans-serif
+  :font-size 0.8em
   :line-height 1.6em
   :background #e5e5e5
-  :margin 3.2em 1.6em
+  :margin 35px 20px
   
 #masthead
   :position fixed
@@ -12,82 +13,73 @@ body
   :top 0
   :left 0
   :width 100%
-  :background #003366
-  :margin-bottom 12px
+  :height 35px
+  :background black
   
-  h1
-    :padding 10px 30px
-    :color #ffcc00
-
   ul
+    :padding 10px 20px 0 20px
     :display block
+    :font-size 0.8em
     
     li
       :float left
 
       a
+        :background #333
         :float left
-        :padding 0 10px
-        :margin 0
-        :line-height 2em
+        :padding 0 20px
+        :margin 0 10px 0 0
+        :line-height 25px
         :color #fff
         :text-decoration none
-        :border-left 1px solid #ccc
+        
+        &:hover, &:active
+          :background #444
+      
+      &.right
+        :float right
+        
+        a
+          :margin 0 0 0 10px
+      
+      &.logout a
+        :background none
+        :padding 0
+        :color #aaa
+        
+      &.current a
+        :background white
+        :color black
 
       &:first-child a
         :border-left 0
 
-#content
-  :padding 12px 20px
+#topics
+  :float left
+  :width 70%
+  :padding 20px
   :background #ffffff
   :border-right  4px solid #bbbbbb
   :border-bottom 4px solid #bbbbbb
 
-#topics 
-  table
+  .topic
+    :overflow auto
     :width 100%
+    :margin-bottom 10px
 
-    tr
-      :display inline-block
-      :width 100%
-      :border-bottom 1px solid #efefef
-    
+    ul
+      :font-size 0.8em
+      
       &.unread
         :font-weight bold
         :background #ffff99
 
-      td
-        :position relative
-        :display block
+      li
         :float left
+        :margin-right 10px
 
-        a:hover, a:active
-          :background #003366
-          :color #ffffff
-      
-        a strong
-          :font-weight bold
-          :font-size 1.2em
-
-        &.topic
-          :width 56%
-          :overflow hidden
-        
-          a
-            :padding 0 3px
-            :margin-right 3px
-            :display block
-            :text-decoration none
-
-        &.tags
-          :width 19%
-      
-        &.time
-          :width 25%
-          :overflow hidden
-        
-          a
-            :text-decoration none
+        a
+          :text-decoration none
         
   #markread
     :font-size 2em
@@ -97,3 +89,44 @@ body
     a:hover
       :background #003366
       :color #ffffff
+
+#posts
+  :float left
+  :width 70%
+  :padding 20px
+  :background #ffffff
+  :border-right  4px solid #bbbbbb
+  :border-bottom 4px solid #bbbbbb
+  
+  #quickreply
+    :position fixed
+    :z-index 990
+    :bottom 0
+    :left 0
+    :width 100%
+    :height 8em
+    :padding 12px 30px
+    :background #e5e5e5
+    
+    textarea
+      :width 70%
+      :float left
+      :margin-right 12px
+      :height 6em
+    
+    input
+      :margin-right 6px
+
+#meta
+  :float left
+  :width 20%
+  :margin 20px
+  
+  h1
+    :font-size 1.8em
+    :margin-bottom 20px
+    
+  h2
+    :background #f3f3f3
+    :padding 2px 5px
+    :font-size 0.8em

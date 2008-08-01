@@ -9,8 +9,13 @@
   </p>
   
   <p>
-    <%= label @post, :body %><br />
-    <%= text_area @post, :body %>
+    <%= f.label :tag_list %><br />
+    <%= f.text_field :tag_list %>
+  </p>
+    
+  <p>
+    <%= label :post, :body %><br />
+    <%= text_area :post, :body %>
   </p>
 
   <p>

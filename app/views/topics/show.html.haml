@@ -1,0 +1,31 @@
+#posts
+  - @topic.posts.each do |post|
+    %a{ :name => post.id }/
+    .post
+      .user=h post.user.name
+      - if post.body.strip =~ /\n/
+        .body
+          %pre=h post.body
+      - else
+        .body=h post.body
+  
+  = render :partial => 'posts/quickreply'
+  
+
+#meta
+  %h1= @topic.title
+
+  #tags
+    %h2 Tags
+    %ul
+      - @topic.tag_list.each do |tag| 
+        %li{ :id => "tag-#{tag.gsub(/\s/, "-")}" }
+          = link_to_remote "[x]", :url => untag_topic_path(@topic, :tag => tag)
+          %a{ :href => "/tags/#{tag}" }= tag
+    - form_for(:tag, :url => tag_topic_path(@topic)) do |f|
+      = f.text_field :name
+      = f.submit "Add"
+
+  #talking
+    %h2 Who's talking?
+    = @topic.posts.map {|i| i.user.name }.uniq

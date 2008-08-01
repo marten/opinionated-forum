@@ -5,22 +5,19 @@
     %title Forum
     %meta{ 'http-equiv'=>"content-type", :content=>"text/html;charset=UTF-8" }
     = stylesheet_link_tag 'screen'
+    = javascript_include_tag :defaults
   %body
     #masthead
       %ul
-        %li= link_to "Topics", topics_path
-        %li= link_to 'New topic', new_topic_path
+        %li{ :class => current?('topics') }= link_to "Topics", topics_path
+        %li{ :class => current?('search') }= link_to "Search", "#notimplemented"
+
         - if @current_user
-          %li= link_to "Profile", @current_user
-        %li= link_to "Search", "#notimplemented"
-        %li{ :style=>"float: right" }
-          - if @current_user
-            = link_to "Log Out", logout_path
-          - else
-            = link_to "Log In", login_path
+          %li.right.logout= link_to "Log Out", logout_path
+          %li.right{ :class => current?(url_for(@current_user)) }= link_to "Profile", @current_user
+        - else
+          %li.right= link_to "Log In", login_path
 
     #content
       %p{ :style=>"color: green" }= flash[:notice]
-    
-      %div{ :id => controller.controller_name }
-        = yield
+      = yield

@@ -1,10 +1,14 @@
-%table
+#topics
   - @topics.each do |topic|
-    %tr
-      %td.topic= link_to topic.title, topic
-      - if not topic.tag_list.empty?
-        %td.tags=  topic.tag_list
-      - else
-        %td.tags No tags assigned
-
-
+    .topic
+      %a.title{ :href => topic_path(topic) }= topic.title
+      %ul
+        %li.tags=  "Tags: "         + topic.tag_list.join(" ") || "no tags assigned"
+        %li.start= "Started by: "   + link_to(topic.posts.first.user.name, topic.posts.first.user)
+        %li.last
+          = "Last post by: " + link_to(topic.posts.last.user.name,  topic.posts.last.user)
+          = " at "           + link_to(topic.posts.last.created_at.to_formatted_s(:short), topic_post_path(topic, topic.posts.last))
+          
+#meta
+  %h2= link_to "Create a new topic", new_topic_path
+  

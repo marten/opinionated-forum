@@ -1,0 +1,3 @@
+elementid = "tag-#{params[:tag].gsub(/\s/, "-")}"
+page.visual_effect(:fade, elementid)
+page.remove(elementid)
