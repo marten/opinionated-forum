@@ -5,7 +5,7 @@ body
   :font-size 0.8em
   :line-height 1.6em
   :background #e5e5e5
-  :margin 35px 20px 0px 20px
+  :margin 40px 20px 0px 20px
   :padding 0 0 0 0
   :overflow auto
   
@@ -17,6 +17,7 @@ body
   :width 100%
   :height 35px
   :background black
+  :border-bottom 5px solid #ff9900
   
   ul
     :padding 10px 20px 0 20px
@@ -44,13 +45,14 @@ body
         a
           :margin 0 0 0 10px
       
-      &.logout a
+      &.logout a,
+      &.login a
         :background none
         :padding 0
         :color #aaa
         
       &.current a
-        :background white
+        :background #ff9900
         :color black
 
       &:first-child a
@@ -71,6 +73,19 @@ body
   form
     label
       :display block
+
+#login
+  :width 400px
+  :margin 100px auto 0 auto
+  :background #fff
+  :padding 25px 40px
+  :border 4px solid #bbb
+  
+  .error
+    :background= red + #999
+  
+  h1
+    :text-align center
 
 #topics
   :margin-right 240px
@@ -209,6 +224,13 @@ body
   .css4
     :font-size 1.9em
     :color= blue - #444
+
+#user
+  :margin-right 240px
+  :padding 20px
+  :background #ffffff
+  :border-right  4px solid #bbbbbb
+  :border-bottom 4px solid #bbbbbb
 
 
 #meta
