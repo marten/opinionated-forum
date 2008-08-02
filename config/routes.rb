@@ -1,6 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.resources :topics, :member => { :tag => :post, :untag => :post } do |topic|
+  map.resources :tags
+  
+  map.resources :topics, :member => { :tag => :post, 
+                                      :untag => :post,
+                                      :update_title_of => :post } do |topic|
     topic.resources :posts
   end
 

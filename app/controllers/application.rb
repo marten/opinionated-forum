@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
-  protect_from_forgery # :secret => 'd252489c64a965e4db2ea656c6688140'
+  #protect_from_forgery # :secret => 'd252489c64a965e4db2ea656c6688140'
   layout 'application'
   before_filter :find_logged_in_user
   

@@ -5,7 +5,9 @@ body
   :font-size 0.8em
   :line-height 1.6em
   :background #e5e5e5
-  :margin 35px 20px
+  :margin 35px 20px 0px 20px
+  :padding 0 0 0 0
+  :overflow auto
   
 #masthead
   :position fixed
@@ -54,9 +56,24 @@ body
       &:first-child a
         :border-left 0
 
+#content
+  :overflow auto
+  :margin-bottom 100px
+  
+  h1
+    :font-size 2em
+    :line-height 1.4em
+    :margin-bottom 20px
+    
+  p
+    :margin-bottom 1.4em
+  
+  form
+    label
+      :display block
+
 #topics
-  :float left
-  :width 70%
+  :margin-right 240px
   :padding 20px
   :background #ffffff
   :border-right  4px solid #bbbbbb
@@ -71,7 +88,6 @@ body
       :font-size 0.8em
       
       &.unread
-        :font-weight bold
         :background #ffff99
 
       li
@@ -81,6 +97,32 @@ body
         a
           :text-decoration none
         
+        &.tags
+          :margin-right 8px
+
+          .tag
+            :margin-right 2px
+  
+  #newtopic
+    :background #eee
+    :border-right 1px solid #ccc
+    :border-bottom 1px solid #ccc
+    :margin-bottom 20px
+    :overflow auto
+    
+    form
+      :padding 10px
+    
+    .info
+      :float left
+      :width 240px
+      
+      h1
+        :font-size 1.6em
+    
+    .fields
+      :margin-left 260px
+  
   #markread
     :font-size 2em
     :text-align center
@@ -91,12 +133,35 @@ body
       :color #ffffff
 
 #posts
-  :float left
-  :width 70%
+  :margin-right 240px
   :padding 20px
   :background #ffffff
   :border-right  4px solid #bbbbbb
   :border-bottom 4px solid #bbbbbb
+  
+  .post
+    :overflow auto
+    .user
+      :float left
+      :width 60px
+      :font-size 0.8em
+      :font-weight bold
+      :text-align right
+      :padding-right 5px
+      :border-right 1px solid #bbb
+    .body
+      :margin-left 65px
+      :padding-left 5px
+      :margin-right 95px
+      :border-left 1px solid #bbb
+    .time
+      :width 70px
+      :font-size 0.8em
+      :float right
+    .mark
+      :width 20px
+      :float right
+      :text-align right
   
   #quickreply
     :position fixed
@@ -104,7 +169,7 @@ body
     :bottom 0
     :left 0
     :width 100%
-    :height 8em
+    :height 70px
     :padding 12px 30px
     :background #e5e5e5
     
@@ -117,16 +182,71 @@ body
     input
       :margin-right 6px
 
-#meta
-  :float left
-  :width 20%
-  :margin 20px
+#tags
+  :margin-right 240px
+  :padding 20px
+  :background #ffffff
+  :border-right  4px solid #bbbbbb
+  :border-bottom 4px solid #bbbbbb
+
+  a
+    :text-decoration none
+    :padding 3px
+    :line-height 1.9em
+    &:hover, &:active
+      :color white
+      :background blue
   
-  h1
-    :font-size 1.8em
-    :margin-bottom 20px
-    
-  h2
-    :background #f3f3f3
-    :padding 2px 5px
-    :font-size 0.8em
+  .css1
+    :font-size 1.0em
+    :color= blue + #888
+  .css2
+    :font-size 1.3em
+    :color= blue + #444
+  .css3
+    :font-size 1.6em
+    :color= blue
+  .css4
+    :font-size 1.9em
+    :color= blue - #444
+
+
+#meta
+  :float right
+  :width 220px
+  :margin 20px 0 0 0
+  :font-size 0.8em
+  
+  h1 .edit
+    :font-size 0.5em
+    :font-weight normal
+  
+  div
+    :padding 0 5px
+
+    h2
+      :background #f3f3f3
+      :padding 2px 5px
+      :margin 20px -5px 0 -5px
+  
+  .tagcloud
+    a
+      :text-decoration none
+      :padding 3px
+      :line-height 1.9em
+      &:hover, &:active
+        :color white
+        :background blue
+  
+    .css1
+      :font-size 1.0em
+      :color= blue + #888
+    .css2
+      :font-size 1.3em
+      :color= blue + #444
+    .css3
+      :font-size 1.6em
+      :color= blue
+    .css4
+      :font-size 1.9em
+      :color= blue - #444

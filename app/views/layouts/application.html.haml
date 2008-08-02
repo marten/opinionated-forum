@@ -10,6 +10,7 @@
     #masthead
       %ul
         %li{ :class => current?('topics') }= link_to "Topics", topics_path
+        %li{ :class => current?('tags') }=   link_to "Tags", tags_path
         %li{ :class => current?('search') }= link_to "Search", "#notimplemented"
 
         - if @current_user
@@ -19,5 +20,4 @@
           %li.right= link_to "Log In", login_path
 
     #content
-      %p{ :style=>"color: green" }= flash[:notice]
       = yield

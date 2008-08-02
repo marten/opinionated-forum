@@ -3,6 +3,7 @@ class TopicsController < ApplicationController
   # GET /topics.xml
   def index
     @topics = Topic.find(:all)
+    @tags = Topic.tag_counts
 
     respond_to do |format|
       format.html # index.html.erb
@@ -123,6 +124,14 @@ class TopicsController < ApplicationController
         wants.xml  { render :xml => @topic.errors, :status => :unprocessable_entity }
         wants.js   { render :update do |page| page.alert("Failed") end }
       end
+    end
+  end
+  
+  def update_title_of
+    @topic = Topic.find(params[:id])
+    @topic.title = params[:value]
+    if @topic.save
+      render :text => @topic.title
     end
   end
 

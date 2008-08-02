@@ -1,21 +1,10 @@
-#posts
-  - @topic.posts.each do |post|
-    %a{ :name => post.id }/
-    .post
-      .user=h post.user.name
-      - if post.body.strip =~ /\n/
-        .body
-          %pre=h post.body
-      - else
-        .body=h post.body
-  
-  = render :partial => 'posts/quickreply'
-  
-
 #meta
-  %h1= @topic.title
+  %h1#title= @topic.title
 
-  #tags
+  = javascript_tag do
+    == new Ajax.InPlaceEditor('title', '#{update_title_of_topic_path(@topic)}');
+
+  #taglist
     %h2 Tags
     %ul
       - @topic.tag_list.each do |tag| 
@@ -23,9 +12,34 @@
           = link_to_remote "[x]", :url => untag_topic_path(@topic, :tag => tag)
           %a{ :href => "/tags/#{tag}" }= tag
     - form_for(:tag, :url => tag_topic_path(@topic)) do |f|
-      = f.text_field :name
-      = f.submit "Add"
+      = f.text_field :name, :style => "width: 142px"
+      = f.submit "add"
 
   #talking
     %h2 Who's talking?
     = @topic.posts.map {|i| i.user.name }.uniq
+    
+  #admin
+    %h2 Administrative
+    %p Split topic with checked messages.
+    
+#posts
+  - lastuser = nil
+  - @topic.posts.each do |post|
+    %a{ :name => post.id }/
+    .post
+      .user{ :title => h(post.user.name) }
+        - if lastuser != post.user
+          - lastuser = post.user
+          =h shorten_username(post.user.name)
+      .mark= check_box :post, :check
+      .time= post.created_at.to_formatted_s :short
+      .body
+        - if post.body.strip =~ /\n/
+          %pre=h post.body
+        - else
+          =h post.body
+
+  = render :partial => 'posts/quickreply'
+
+

@@ -1,0 +1,20 @@
+#newtopic{:style => "display: none"}
+  - form_for(:topic) do |f| 
+    .info
+      %h1 Start a new topic
+      %p You can add some tags to your topic, which makes it easier for other users to see what kind of topic it is. Separate multiple tags with spaces.
+
+    .fields
+      = f.label :title, "Title for your topic", :style => "font-weight: bold"
+      = f.text_field :title, :style => "font-size: 1.6em; width: 97%; margin-bottom: 0.5em"
+  
+      = f.label :tag_list, "Optional: tags for this topic"
+      = f.text_field :tag_list, :style => "width: 97%; margin-bottom: 0.5em;"
+  
+      = label :post, :body, "Write a nice opening post for your topic"
+      = text_area :post, :body, :style => "width: 97%; height: 100px; margin-bottom: 1em"
+
+      %p{ :style => "margin-bottom: 0"}
+        = f.submit "Start your topic"
+        or
+        = link_to_function('cancel', "Effect.SlideUp('newtopic', { duration: 0.2 })", :style => "color: red")

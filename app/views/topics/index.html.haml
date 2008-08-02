@@ -1,14 +1,21 @@
+#meta
+  %h1= link_to_function("Start a new topic", "Effect.toggle('newtopic', 'slide', { duration: 0.2 })")
+  
+  .tagcloud
+    %h2 Tags
+    - tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| 
+      = link_to tag.name, tag, :class => css_class
+
 #topics
+  = render :partial => "new"
   - @topics.each do |topic|
     .topic
       %a.title{ :href => topic_path(topic) }= topic.title
       %ul
-        %li.tags=  "Tags: "         + topic.tag_list.join(" ") || "no tags assigned"
-        %li.start= "Started by: "   + link_to(topic.posts.first.user.name, topic.posts.first.user)
+        %li.tags
+          = "Tags: "         + tags_for_topic(topic.tags)
+        %li.start
+          = "Started by: "   + link_to(topic.starter.name, topic.starter)
         %li.last
           = "Last post by: " + link_to(topic.posts.last.user.name,  topic.posts.last.user)
           = " at "           + link_to(topic.posts.last.created_at.to_formatted_s(:short), topic_post_path(topic, topic.posts.last))
-          
-#meta
-  %h2= link_to "Create a new topic", new_topic_path
-  
