@@ -1,0 +1,7 @@
+#slowreply{ :style => "display: none" }
+  - form_for(:post, :url => topic_posts_path(@topic)) do |f| 
+    .side
+      = f.submit "Add message"
+      or
+      = link_to_function 'cancel', '$("quickreply").appear(); Effect.SlideUp("slowreply");'
+    = f.text_area :body

@@ -1,9 +1,12 @@
 class TopicsController < ApplicationController
+  before_filter :require_login, :except => [:index, :show]
+  
   # GET /topics
   # GET /topics.xml
   def index
-    @topics = Topic.find(:all)
-    @tags = Topic.tag_counts
+    # TODO Here be unoptimized code.
+    @topics = Topic.find(:all).sort {|a,b| b.posts.last.created_at <=> a.posts.last.created_at }
+    @tags = Topic.tag_counts.sort {|a,b| b.count <=> a.count }[0..19]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +18,15 @@ class TopicsController < ApplicationController
   # GET /topics/1.xml
   def show
     @topic = Topic.find(params[:id])
+    @topic.read_by(@current_user) if @current_user
+    
+    # TODO This is an excellent candidate for a helper
+    h = {}
+    @topic.posts.each do |post|
+      h[post.user] = post.created_at
+    end
+    @posters = h.map.sort(){|a,b| a[1] <=> b[1] }
+    
 
     respond_to do |format|
       format.html # show.html.erb
@@ -129,7 +141,7 @@ class TopicsController < ApplicationController
   
   def update_title_of
     @topic = Topic.find(params[:id])
-    @topic.title = params[:value]
+    @topic.title = helpers.sanitize(params[:value])
     if @topic.save
       render :text => @topic.title
     end

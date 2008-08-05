@@ -1,5 +1,6 @@
 #meta
-  %h1= link_to_function("Start a new topic", "Effect.toggle('newtopic', 'slide', { duration: 0.2 })")
+  - if @current_user
+    %h1= link_to_function("Start a new topic", "Effect.toggle('newtopic', 'slide', { duration: 0.2 })")
   
   .tagcloud
     %h2 Tags
@@ -8,14 +9,4 @@
 
 #topics
   = render :partial => "new"
-  - @topics.each do |topic|
-    .topic
-      %a.title{ :href => topic_path(topic) }= topic.title
-      %ul
-        %li.tags
-          = "Tags: "         + tags_for_topic(topic.tags)
-        %li.start
-          = "Started by: "   + link_to(topic.starter.name, topic.starter)
-        %li.last
-          = "Last post by: " + link_to(topic.posts.last.user.name,  topic.posts.last.user)
-          = " at "           + link_to(topic.posts.last.created_at.to_formatted_s(:short), topic_post_path(topic, topic.posts.last))
+  = render :partial => "list", :locals => {:topics => @topics}

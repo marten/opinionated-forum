@@ -1,13 +1,6 @@
+- content_for :feeds do 
+  %link{ "rel"=>"alternate", "type"=>"application/rss+xml", "title"=>"Topics tagged with 'test'", "href"=>formatted_tag_url(@tag, :format => :rss) }
+
 #topics
-  %h1== Topics tagged with "#{@tag.name}"
-  - @topics.each do |topic|
-    .topic
-      %a.title{ :href => topic_path(topic) }= topic.title
-      %ul
-        %li.tags
-          = "Tags: "         + tags_for_topic(topic.tags)
-        %li.start
-          = "Started by: "   + link_to(topic.starter.name, topic.starter)
-        %li.last
-          = "Last post by: " + link_to(topic.posts.last.user.name,  topic.posts.last.user)
-          = " at "           + link_to(topic.posts.last.created_at.to_formatted_s(:short), topic_post_path(topic, topic.posts.last))
+  %h1== Topics tagged with &ldquo;#{@tag.name}&rdquo;
+  = render :partial => "topics/list", :locals => {:topics => @topics}

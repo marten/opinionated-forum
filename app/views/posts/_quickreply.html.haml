@@ -1,4 +1,6 @@
 #quickreply
-  - form_for(:post, :url => topic_posts_path(@topic)) do |f| 
-    = f.text_area :body
-    = f.submit
+  - form_for(:post, :url => topic_posts_path(@topic), :html => {:id => 'quickquickreply'}) do |f| 
+    = f.text_field :body, :class => "textarea"
+    = f.submit "Add message"
+    %br
+    = link_to_function "More options", 'Effect.SlideDown("slowreply"); $("quickreply").fade();'

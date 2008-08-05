@@ -1,45 +1,51 @@
 #meta
-  %h1#title= @topic.title
+  %h1#title=h @topic.title
 
-  = javascript_tag do
-    == new Ajax.InPlaceEditor('title', '#{update_title_of_topic_path(@topic)}');
+  - if @current_user
+    = javascript_tag do
+      == new Ajax.InPlaceEditor('title', '#{update_title_of_topic_path(@topic)}', { highlightendcolor: "#e5e5e5"});
 
   #taglist
     %h2 Tags
     %ul
-      - @topic.tag_list.each do |tag| 
-        %li{ :id => "tag-#{tag.gsub(/\s/, "-")}" }
-          = link_to_remote "[x]", :url => untag_topic_path(@topic, :tag => tag)
-          %a{ :href => "/tags/#{tag}" }= tag
-    - form_for(:tag, :url => tag_topic_path(@topic)) do |f|
-      = f.text_field :name, :style => "width: 142px"
-      = f.submit "add"
+      - @topic.tags.each do |tag| 
+        %li{ :id => "tag-#{tag.name.gsub(/\s/, "-")}" }
+          = link_to_remote "[x]", :url => untag_topic_path(@topic, :tag => tag.name) if @current_user
+          = link_to tag.name, tag
+    - if @current_user
+      - form_for(:tag, :url => tag_topic_path(@topic)) do |f|
+        = f.text_field :name, :style => "width: 142px"
+        = f.submit "add"
 
   #talking
-    %h2 Who's talking?
-    = @topic.posts.map {|i| i.user.name }.uniq
-    
-  #admin
-    %h2 Administrative
-    %p Split topic with checked messages.
+    %h2
+      Who's talking?
+      %small (by time last seen)
+    = @posters.map {|user, time| time.to_formatted_s(:short) + " " + link_to(user.name, user) }.join(",<br/>")
+  
+  - if @current_user
+    #admin
+      %h2 Administrative
+      %p Split topic with checked messages.
     
 #posts
-  - lastuser = nil
+  - prevpost = nil
   - @topic.posts.each do |post|
+    - user_continuation = (prevpost.user == post.user rescue false)
     %a{ :name => post.id }/
     .post
-      .user{ :title => h(post.user.name) }
-        - if lastuser != post.user
-          - lastuser = post.user
-          =h shorten_username(post.user.name)
-      .mark= check_box :post, :check
-      .time= post.created_at.to_formatted_s :short
-      .body
-        - if post.body.strip =~ /\n/
-          %pre=h post.body
-        - else
-          =h post.body
-
-  = render :partial => 'posts/quickreply'
-
-
+      .user{ :title => h(post.user.name) }<
+        =h(shorten_username(post.user.name)) unless user_continuation
+        /- if post.body.length > 100
+        /  %img{ :src => "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(post.user.email.downcase)}?s=30" }
+          
+      .mark<
+        = check_box :post, :check3
+      .time<
+        = link_to(post.created_at.to_formatted_s(:short), topic_post_path(@topic, post))
+      .body<
+        = safe_markdown(post.body)
+    - prevpost = post unless user_continuation
+  = render :partial => 'posts/slowreply'  if @current_user
+  = render :partial => 'posts/quickreply' if @current_user
+  

@@ -4,17 +4,19 @@ require 'openid/store/filesystem'
 
 class SessionsController < ApplicationController
 
-  def index
-  end
-
   def new
     # login page
   end
   
   def create
+    if params[:skip_openid] and Rails.env.development?
+      session[:user_openid_url] = params[:openid_url]
+      redirect_to root_path and return
+    end
+    
     begin
       identifier = params[:openid_url]
-      if identifier.nil?
+      if identifier.nil? || identifier == "http://"
         flash[:error] = "OpenID URL not given"
         render(:action => 'new') and return
       end
@@ -55,12 +57,12 @@ class SessionsController < ApplicationController
       flash[:notice] = "OpenID transaction cancelled."
     else
     end
-    redirect_to url_for( :action => :index )
+    redirect_to root_path
   end
 
   
   def destroy
-    session[:user_open_url] = nil
+    session[:user_openid_url] = nil
     redirect_to root_path
   end
 

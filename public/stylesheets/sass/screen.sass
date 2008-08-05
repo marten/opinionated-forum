@@ -60,7 +60,7 @@ body
 
 #content
   :overflow auto
-  :margin-bottom 100px
+  :margin-bottom 7em
   
   h1
     :font-size 2em
@@ -69,6 +69,11 @@ body
     
   p
     :margin-bottom 1.4em
+  
+  blockquote
+    :border-left 4px solid #bbb
+    :padding-left 5px
+    :color #666
   
   form
     label
@@ -96,15 +101,22 @@ body
 
   .topic
     :overflow auto
-    :width 100%
     :margin-bottom 10px
+    :padding 5px 10px
+    
+
+    &.unread
+      :background #ffffcc
+
+    &.odd
+      :margin -5px 0 5px 0
+      :background #f3f3f3
+      &.unread
+        :background #f2f2c1
 
     ul
       :font-size 0.8em
       
-      &.unread
-        :background #ffff99
-
       li
         :float left
         :margin-right 10px
@@ -119,14 +131,13 @@ body
             :margin-right 2px
   
   #newtopic
-    :background #eee
-    :border-right 1px solid #ccc
-    :border-bottom 1px solid #ccc
-    :margin-bottom 20px
+    :background #f3f3f3
+    :border-bottom 4px solid #ccc
+    :margin -20px -20px 10px -20px
     :overflow auto
     
     form
-      :padding 10px
+      :padding 30px 20px 30px 30px
     
     .info
       :float left
@@ -155,7 +166,7 @@ body
   :border-bottom 4px solid #bbbbbb
   
   .post
-    :overflow auto
+    :overflow hidden
     .user
       :float left
       :width 60px
@@ -167,12 +178,14 @@ body
     .body
       :margin-left 65px
       :padding-left 5px
+      :padding-bottom 10px
       :margin-right 95px
       :border-left 1px solid #bbb
     .time
       :width 70px
       :font-size 0.8em
       :float right
+      :text-align right
     .mark
       :width 20px
       :float right
@@ -183,19 +196,53 @@ body
     :z-index 990
     :bottom 0
     :left 0
+    :right 240px
     :width 100%
-    :height 70px
-    :padding 12px 30px
-    :background #e5e5e5
+    :min-height 4em
+    :padding 12px 20px
+    :background= #e5e5e5 - #ccc
     
-    textarea
+    #quickquickreply
+      :position absolute
+      :top 12px
+      :left 20px
+      :right 20px
+    
+    .textarea
       :width 70%
       :float left
       :margin-right 12px
-      :height 6em
+      :padding 10px
+      :font-size 1.5em
     
     input
       :margin-right 6px
+  
+  #slowreply
+    :background= #e5e5e5
+    :margin-left -20px
+    :margin-right= -24px - 240px
+    :margin-bottom -24px
+    :overflow auto
+    :z-index 800
+    
+    form
+      :border-top 4px solid #bbbbbb
+      :border-right  4px solid #bbbbbb
+      :border-bottom 4px solid #bbbbbb
+      :background #f3f3f3
+      :padding 20px
+      :margin-right 240px
+      
+      textarea
+        :width 100%
+      
+      .side
+        :background green
+        :float right
+        :margin-right -260px
+        :width= 240px - 20px - 4px - 5px
+        :padding 0 5px
 
 #tags
   :margin-right 240px
@@ -225,6 +272,40 @@ body
     :font-size 1.9em
     :color= blue - #444
 
+#users
+  :margin-right 240px
+  :padding 20px
+  :background #ffffff
+  :border-right  4px solid #bbbbbb
+  :border-bottom 4px solid #bbbbbb
+
+  .user
+    :overflow auto
+    :margin-bottom 10px
+    :padding 5px 10px
+    
+    &.odd
+      :margin -5px 0 5px 0
+      :background #f3f3f3
+
+    ul
+      :font-size 0.8em
+      &.unread
+        :background #ffff99
+
+      li
+        :float left
+        :margin-right 10px
+
+        a
+          :text-decoration none
+      
+        &.tags
+          :margin-right 8px
+          .tag
+            :margin-right 2px
+  
+
 #user
   :margin-right 240px
   :padding 20px
@@ -250,6 +331,9 @@ body
       :background #f3f3f3
       :padding 2px 5px
       :margin 20px -5px 0 -5px
+      
+      small
+        :font-weight normal
   
   .tagcloud
     a
