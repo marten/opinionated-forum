@@ -2,7 +2,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :tags
   
-  map.resources :topics, :member => { :tag => :post, 
+  map.resources :topics, :collection => {:mark_all_read => :post},
+                         :member => { :tag => :post, 
                                       :untag => :post,
                                       :update_title_of => :post } do |topic|
     topic.resources :posts

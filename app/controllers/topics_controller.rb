@@ -150,6 +150,11 @@ class TopicsController < ApplicationController
     end
   end
   
+  def mark_all_read
+    @current_user.mark_all_topics_read
+    redirect_to(topics_path)
+  end
+  
   private
     def mark_topic_read
       Topic.find(params[:id]).read_by(@current_user) if @current_user
