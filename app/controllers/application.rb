@@ -7,16 +7,6 @@ class ApplicationController < ActionController::Base
   layout 'application'
   before_filter :find_logged_in_user
   
-  def helpers
-    Helper.instance
-  end
-  
-  class Helper
-    include Singleton
-    include ActionView::Helpers::TextHelper
-    include ActionView::Helpers::SanitizeHelper
-  end
-  
   private
     def find_logged_in_user
       if session[:user_openid_url]

@@ -24,3 +24,6 @@ Rails::Initializer.run do |config|
 end
 
 TagList.delimiter = ' '
+
+require 'active_record_extensions'
+require 'action_controller_extensions'
