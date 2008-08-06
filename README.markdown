@@ -22,3 +22,8 @@ There are two kinds of topics:
     
   - **Continuous topics**
     These topics are more like a chat room than like a forum topic. They show only the latest 30 or so messages, and provide you with a paginated archive when you really need the history.
+
+
+# TODO list
+
+  - Add ability to mark tags as protected
