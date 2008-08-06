@@ -1,6 +1,6 @@
 #meta
   - if @current_user
-    %h1= link_to_function("Start a new topic", "toggle_startnewtopic()")
+    %h1= link_to_function("Start a new topic", "toggle_startnewtopic()", :href => new_topic_path)
   
   .tagcloud
     %h2 Tags
