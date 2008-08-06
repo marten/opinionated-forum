@@ -3,5 +3,5 @@
     .side
       = f.submit "Add message"
       or
-      = link_to_function 'cancel', '$("quickreply").appear(); Effect.SlideUp("slowreply");'
+      = link_to_function 'cancel', 'switch_to_quickreply()'
     = f.text_area :body

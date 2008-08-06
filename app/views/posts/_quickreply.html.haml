@@ -3,4 +3,4 @@
     = f.text_field :body, :class => "textarea"
     = f.submit "Add message"
     %br
-    = link_to_function "More options", 'Effect.SlideDown("slowreply"); $("quickreply").fade();'
+    = link_to_function "More options", 'switch_to_slowreply()'

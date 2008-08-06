@@ -46,6 +46,7 @@
       .body<
         = safe_markdown(post.body)
     - prevpost = post unless user_continuation
+  
   = render :partial => 'posts/slowreply'  if @current_user
   = render :partial => 'posts/quickreply' if @current_user
   
