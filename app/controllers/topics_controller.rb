@@ -8,8 +8,8 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.xml
   def index
-    # TODO Here be unoptimized code.
-    @topics = Topic.find(:all).sort {|a,b| b.posts.last.created_at <=> a.posts.last.created_at }
+    @topics = Topic.find(:all, :include => [:tags, :posts])
+    @topics.sort! {|a,b| b.posts.last.created_at <=> a.posts.last.created_at }
     @tags = Topic.tag_counts.sort {|a,b| b.count <=> a.count }[0..19]
 
     respond_to do |format|

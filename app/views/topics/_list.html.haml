@@ -5,7 +5,7 @@
       %li.tags
         = "Tags: "         + tags_for_topic(topic.tags)
       /%li.start
-      /  = "Started by: "   + link_to(topic.starter.name, topic.starter)
+      /  = "Started by: "   + link_to(topic.posts.first.name, topic.posts.first)
       %li.last
-        = "Last post by: " + link_to(topic.latestr.name,  topic.latestr)
+        = "Last post by: " + link_to(topic.posts.last.user.name,  topic.posts.last.user)
         = " at "           + link_to(topic.posts.last.created_at.to_formatted_s(:short), topic_post_path(topic, topic.posts.last))
