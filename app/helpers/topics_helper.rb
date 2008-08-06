@@ -7,4 +7,12 @@ module TopicsHelper
     return "read" if viewing = topic.last_read_by(user) and viewing.seen >= topic.posts.last.created_at
     return "unread"
   end
+  
+  def posters(posts)
+    h = Hash.new
+    posts.each { |post| h[post.user] = post.created_at }
+    posters = h.map.sort {|a,b| a[1] <=> b[1] }
+    posters.map {|user, time| time.to_formatted_s(:short) + " " + link_to(user.name, user) }.join(",<br/>")
+  end
+  
 end

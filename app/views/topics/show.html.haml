@@ -21,7 +21,7 @@
     %h2
       Who's talking?
       %small (by time last seen)
-    = @posters.map {|user, time| time.to_formatted_s(:short) + " " + link_to(user.name, user) }.join(",<br/>")
+    = posters(@topic.posts)
   
   - if @current_user
     #admin
@@ -44,7 +44,7 @@
       .time<
         = link_to(post.created_at.to_formatted_s(:short), topic_post_path(@topic, post))
       .body<
-        = safe_markdown(post.body)
+        = markdown(post.body)
     - prevpost = post unless user_continuation
   
   = render :partial => 'posts/slowreply'  if @current_user
