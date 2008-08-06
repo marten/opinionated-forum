@@ -16,6 +16,7 @@ class TagsController < ApplicationController
   def show
     @tag = Tag.find(params[:id])
     @topics = Topic.find_tagged_with(@tag.name,
+                                     :order => "topics.created_at DESC",
                                      :include => :tags)
 
     respond_to do |format|
