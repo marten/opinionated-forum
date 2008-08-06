@@ -27,9 +27,17 @@ class ApplicationController < ActionController::Base
           redirect_to @current_user and return
         end
       end
+      
+      return true
     end
     
     def require_login
       @current_user
     end
+    
+    # Cache different pages for Admin and Users
+    def action_fragment_key(options)
+      url_for(options).split('://').last
+    end
+    
 end

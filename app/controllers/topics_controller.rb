@@ -1,5 +1,9 @@
 class TopicsController < ApplicationController
   before_filter :require_login, :except => [:index, :show]
+  before_filter :mark_topic_read, :only => [:show]
+  
+  caches_action :show
+  cache_sweeper :post_sweeper, :only => [:update, :tag, :untag, :update_title_of]
   
   # GET /topics
   # GET /topics.xml
@@ -18,7 +22,6 @@ class TopicsController < ApplicationController
   # GET /topics/1.xml
   def show
     @topic = Topic.find(params[:id])
-    @topic.read_by(@current_user) if @current_user
     
     # TODO This is an excellent candidate for a helper
     h = {}
@@ -146,5 +149,11 @@ class TopicsController < ApplicationController
       render :text => @topic.title
     end
   end
+  
+  private
+    def mark_topic_read
+      Topic.find(params[:id]).read_by(@current_user) if @current_user
+      true
+    end
 
 end

@@ -17,7 +17,6 @@ class Topic < ActiveRecord::Base
   def last_read_by(user)
     viewings.find_by_user_id(user.id)
   end
-  alias_method :unread_for, :last_read_by
   
   def read_by(user)
     v = viewings.find_or_initialize_by_user_id(user.id)
