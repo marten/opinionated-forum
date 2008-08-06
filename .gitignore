@@ -5,3 +5,5 @@ db/photos/*
 db/import/*
 db/*.sqlite3
 config/initializers/site_keys.rb
+public/stylesheets/screen.css
+tmp/**/*
