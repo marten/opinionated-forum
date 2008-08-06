@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :viewed_topics, :through => :viewings, :source => :topic
   
   validates_presence_of :openid_url
+  validates_presence_of :name
+  validates_presence_of :email
   
   def mark_all_topics_read
     # set the time marker
