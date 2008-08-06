@@ -12,6 +12,7 @@ class Topic < ActiveRecord::Base
   has_many   :viewings
   has_many   :viewers, :through => :views, :source => :user
 
+  before_validation :sanitize_fields
   validates_presence_of :title
   
   def last_read_by(user)
@@ -23,5 +24,11 @@ class Topic < ActiveRecord::Base
     v.seen = Time.now
     v.save
   end
+
+  private
+    def sanitize_fields
+      self.title = helpers.sanitize(title)
+    end
+
 
 end

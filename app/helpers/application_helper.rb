@@ -6,8 +6,4 @@ module ApplicationHelper
     request.request_uri.index(dst) == 0 ? 'current' : nil
   end
   
-  def safe_markdown(text)
-    markdown(sanitize(text))
-  end
-  
 end
