@@ -26,4 +26,10 @@ class Topic < ActiveRecord::Base
     end
 
 
+  private
+    def sanitize_fields
+      self.title = helpers.sanitize(title)
+    end
+
+
 end
