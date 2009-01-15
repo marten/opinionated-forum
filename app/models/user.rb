@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+  class User < ActiveRecord::Base
   has_many :posts
   has_many :viewings, :dependent => :delete_all
   has_many :viewed_topics, :through => :viewings, :source => :topic
@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   before_validation :sanitize_fields
   validates_presence_of :openid_url
   validates_presence_of :name
-  validates_presence_of :email
+#  validates_presence_of :email
   
   def mark_all_topics_read
     # set the time marker
