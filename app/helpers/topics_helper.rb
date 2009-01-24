@@ -1,3 +1,4 @@
+    
 module TopicsHelper
   def class_style_for_seen_topic(topic, user)
     return "read" unless user

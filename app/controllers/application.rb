@@ -12,9 +12,13 @@ class ApplicationController < ActionController::Base
       if session[:user_openid_url]
         @current_user = User.find_or_initialize_by_openid_url(:openid_url => session[:user_openid_url], :name => session[:user_openid_url])
         
-        if @current_user.new_record? and @current_user.save
-          session[:return_path] = request.url
-          redirect_to @current_user and return
+        if @current_user.new_record?
+          if @current_user.save
+            session[:return_path] = request.url
+            redirect_to @current_user and return
+          else
+            raise "#{@current_user.errors.full_messages}"
+          end
         end
       end
       

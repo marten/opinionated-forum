@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080802191510) do
+ActiveRecord::Schema.define(:version => 20080805222810) do
 
   create_table "posts", :force => true do |t|
     t.text     "body"
@@ -49,6 +49,12 @@ ActiveRecord::Schema.define(:version => 20080802191510) do
     t.string   "email"
     t.boolean  "admin"
     t.datetime "all_read_upto"
+  end
+
+  create_table "viewings", :force => true do |t|
+    t.integer  "topic_id"
+    t.integer  "user_id"
+    t.datetime "seen",     :null => false
   end
 
 end

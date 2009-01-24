@@ -23,7 +23,7 @@
       %small (by time last seen)
     = posters(@topic.posts)
   
-  - if @current_user
+  - if @current_user and @current_user.admin?
     #admin
       %h2 Administrative
       %p Split topic with checked messages.

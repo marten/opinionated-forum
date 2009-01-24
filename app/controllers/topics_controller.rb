@@ -29,7 +29,6 @@ class TopicsController < ApplicationController
       h[post.user] = post.created_at
     end
     @posters = h.map.sort(){|a,b| a[1] <=> b[1] }
-    
 
     respond_to do |format|
       format.html # show.html.erb
