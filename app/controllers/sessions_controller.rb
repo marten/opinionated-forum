@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
     
     begin
       identifier = params[:openid_url]
+      identifier = 'http://' + identifier unless identifier =~ /^https?:\/\//
       if identifier.nil? || identifier == "http://"
         flash[:error] = "OpenID URL not given"
         render(:action => 'new') and return
