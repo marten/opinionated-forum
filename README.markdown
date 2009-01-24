@@ -33,3 +33,5 @@ There are two kinds of topics:
  - Replace Prototype with unobtrusive JavaScript
  - Create Search page using Google Site Search
  - Give users a text box to add their own profile info
+ - When switching message modes, preserve message
+ - In large message mode, post/cancel buttons overlap right column
